@@ -17,14 +17,14 @@ This ledger records demonstrated completion rather than aspiration.
 | Experience | Series laboratory | Pending | Command-line example only |
 | Experience | Phase laboratory | Pending | Planned for 0.3.0 |
 | Publication | Claims register | Complete | `CLAIMS.md` |
-| Publication | Version 0.1.0 | Release candidate | Requires live CI, Pages, repository protections, metadata finalization, and tag publication |
+| Publication | Version 0.1.0 | Released | Hosted checks, live Pages, repository protections, and release metadata verified |
 
 ## Meaning of status
 
 - **Complete** — implemented and covered by the stated evidence
 - **Foundation only** — enough for the current release, not the full mastery gate
 - **Pending** — not represented as complete
-- **Release candidate** — source-corrected and locally validated, awaiting GitHub-side gates
+- **Released** — technical foundation release published through protected GitHub gates
 
 
 ## Validation policy

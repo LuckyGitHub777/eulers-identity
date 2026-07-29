@@ -6,7 +6,7 @@ $$
 
 **See how complex rotation reveals one of mathematics’ most elegant identities.**
 
-[Run the interactive experience](#experience-it) ·
+[Open the interactive experience](https://luckygithub777.github.io/eulers-identity/) ·
 [Read the proof](docs/proof.md) ·
 [Run the code](#run-the-code) ·
 [Review the claims register](CLAIMS.md)
@@ -143,7 +143,7 @@ consciousness is a physical field, or establishes a new theory of gravity.
 
 ## Project status
 
-The `0.1.0` foundation release candidate includes:
+The `0.1.0` foundation release includes:
 
 - direct derivation
 - complex-plane explanation
@@ -162,7 +162,6 @@ the [roadmap](ROADMAP.md). Their absence from `0.1.0` is intentional.
 - Learner observation is a declared `0.1.x` validation activity and a required gate for `1.0.0`; it is not a blocker for the technical `0.1.0` foundation release.
 - Automated and browser-based accessibility checks are complete. Manual screen-reader testing with NVDA, JAWS, VoiceOver, or Narrator and validation on physical mobile devices remain pending.
 - Continuous Play animation suppresses live-region updates and announces one settled status when paused; broader manual assistive-technology validation remains part of the `0.1.x` cycle.
-- The final Pages URL and release date are verified only after the GitHub-side release gates pass.
 
 ## Contributing
 
