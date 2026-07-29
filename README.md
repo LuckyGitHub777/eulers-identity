@@ -113,7 +113,7 @@ python examples\minimal.py
 Expected output includes a residual near machine precision:
 
 ```text
-Euler's identity: e^(iπ) + 1 = 0
+Euler's identity: e^(i*pi) + 1 = 0
 Computed result: 0.000000000000000+0.000000000000000j
 Residual magnitude: approximately 1.225e-16
 Verified within tolerance: True
