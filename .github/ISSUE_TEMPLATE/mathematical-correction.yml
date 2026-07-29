@@ -1,0 +1,32 @@
+name: Mathematical correction
+description: Report a mathematical error or materially unclear statement
+title: "[Math]: "
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Identify the file, section, equation, or line.
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: Current statement and problem
+      description: Quote the statement and explain why it is incorrect or unclear.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+      description: Provide a derivation or reliable source when applicable.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Evidence boundary
+      options:
+        - label: I have distinguished proof, application, and interpretation.
+          required: true

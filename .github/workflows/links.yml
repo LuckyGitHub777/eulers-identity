@@ -1,0 +1,58 @@
+name: Internal links
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  internal-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check relative Markdown links
+        shell: python
+        run: |
+          import pathlib
+          import re
+          import sys
+
+          root = pathlib.Path(".").resolve()
+          failures = []
+          pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+
+          for document in root.rglob("*.md"):
+              text = document.read_text(encoding="utf-8")
+              for target in pattern.findall(text):
+                  target = target.strip()
+                  if (
+                      not target
+                      or target.startswith(("http://", "https://", "mailto:", "#"))
+                  ):
+                      continue
+
+                  path_text = target.split("#", 1)[0]
+                  if not path_text:
+                      continue
+
+                  resolved = (document.parent / path_text).resolve()
+                  if root not in resolved.parents and resolved != root:
+                      failures.append(f"{document}: path escapes repository: {target}")
+                  elif not resolved.exists():
+                      failures.append(f"{document}: missing target: {target}")
+
+          if failures:
+              print("\n".join(failures))
+              sys.exit(1)
+
+          print("All relative Markdown link targets exist.")

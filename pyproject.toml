@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eulers-identity"
+version = "0.1.0"
+description = "An interactive and tested introduction to Euler's identity."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = [
+  "Euler's identity",
+  "Euler's formula",
+  "complex numbers",
+  "unit circle",
+  "mathematics education"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Education",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Education",
+  "Topic :: Scientific/Engineering :: Mathematics"
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/LuckyGitHub777/eulers-identity"
+Repository = "https://github.com/LuckyGitHub777/eulers-identity"
+Issues = "https://github.com/LuckyGitHub777/eulers-identity/issues"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+  "ruff>=0.15.22,<0.16",
+  "tomli>=2,<3; python_version < '3.11'"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
