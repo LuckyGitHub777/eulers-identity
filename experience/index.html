@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Euler's identity through an accessible interactive unit circle.">
+  <meta property="og:title" content="Euler’s Identity — Interactive Unit Circle">
+  <meta property="og:description" content="Watch complex rotation reveal e^(iπ) + 1 = 0.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Euler’s Identity — Interactive Unit Circle">
+  <meta name="twitter:description" content="Watch complex rotation reveal e^(iπ) + 1 = 0.">
+  <meta name="theme-color" content="#070a12">
+  <title>Euler’s Identity — Interactive Unit Circle</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#experience">Skip to the interactive experience</a>
+
+  <header class="site-header">
+    <p class="eyebrow">Euler’s Identity</p>
+    <h1><span aria-label="e to the power i pi plus one equals zero">e<sup>iπ</sup> + 1 = 0</span></h1>
+    <p class="lede">Move the angle. See the rotation. Reveal the identity.</p>
+  </header>
+
+  <main id="experience" tabindex="-1">
+    <section class="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title">Walk the unit circle</h2>
+      <p>
+        Begin at <strong>1</strong>. Change the angle θ and watch
+        <span aria-label="e to the power i theta">e<sup>iθ</sup></span>
+        rotate. At θ = π, the point reaches −1. Add 1, and the result is 0.
+      </p>
+    </section>
+
+    <section class="experience-grid" aria-label="Interactive unit circle laboratory">
+      <div class="visual-panel">
+        <svg id="unit-circle" viewBox="-160 -160 320 320" role="img"
+             aria-labelledby="circle-title circle-description">
+          <title id="circle-title">Interactive complex unit circle</title>
+          <desc id="circle-description">
+            A point and radius vector rotate counterclockwise according to the selected angle.
+          </desc>
+
+          <defs>
+            <marker id="addition-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+          </defs>
+
+          <line class="axis" x1="-145" y1="0" x2="145" y2="0"></line>
+          <line class="axis" x1="0" y1="-145" x2="0" y2="145"></line>
+          <circle class="circle" cx="0" cy="0" r="110"></circle>
+
+          <line id="real-projection" class="projection real" x1="0" y1="0" x2="0" y2="0"></line>
+          <line id="imag-projection" class="projection imaginary" x1="0" y1="0" x2="0" y2="0"></line>
+          <line id="radius-vector" class="radius" x1="0" y1="0" x2="110" y2="0"></line>
+          <line id="addition-vector" class="addition hidden" x1="-110" y1="0" x2="0" y2="0"
+                marker-end="url(#addition-arrow)"></line>
+          <text id="addition-label" class="addition-label hidden" x="-58" y="-12">+1</text>
+
+          <circle id="rotating-point" class="point" cx="110" cy="0" r="6"></circle>
+          <circle id="origin-point" class="origin hidden" cx="0" cy="0" r="6"></circle>
+
+          <text class="axis-label" x="124" y="-8">1</text>
+          <text class="axis-label" x="-139" y="-8">−1</text>
+          <text class="axis-label" x="8" y="-123">i</text>
+          <text class="axis-label" x="8" y="138">−i</text>
+          <text class="axis-label" x="7" y="18">0</text>
+        </svg>
+      </div>
+
+      <div class="control-panel">
+        <div class="control-group">
+          <label for="angle-slider">Angle θ in radians</label>
+          <input id="angle-slider" type="range" min="0" max="6.283185307179586"
+                 step="0.001" value="0" aria-describedby="angle-help">
+          <p id="angle-help" class="help">
+            Use the arrow keys for fine movement. Page Up and Page Down move faster.
+          </p>
+        </div>
+
+        <div class="preset-group" aria-label="Special angles">
+          <button type="button" data-angle="0" aria-label="Set angle to zero radians">0</button>
+          <button type="button" data-angle="1.5707963267948966"
+                  aria-label="Set angle to pi over two radians">π/2</button>
+          <button type="button" data-angle="3.141592653589793"
+                  aria-label="Set angle to pi radians">π</button>
+          <button type="button" data-angle="4.71238898038469"
+                  aria-label="Set angle to three pi over two radians">3π/2</button>
+          <button type="button" data-angle="6.283185307179586"
+                  aria-label="Set angle to two pi radians">2π</button>
+        </div>
+
+        <div class="button-row">
+          <button id="play-button" type="button">Play</button>
+          <button id="reset-button" type="button">Reset</button>
+          <button id="explain-button" class="primary" type="button">
+            Explain Euler’s identity
+          </button>
+        </div>
+
+        <dl class="readout">
+          <div><dt>Angle</dt><dd id="angle-value">0.000 rad (0)</dd></div>
+          <div><dt>Real part</dt><dd id="real-value">1.000</dd></div>
+          <div><dt>Imaginary part</dt><dd id="imag-value">0.000</dd></div>
+          <div><dt>Complex value</dt><dd id="complex-value">1.000 + 0.000i</dd></div>
+          <div><dt>Magnitude</dt><dd id="magnitude-value">1.000</dd></div>
+        </dl>
+
+        <section class="explanation" aria-labelledby="explanation-title"
+                 role="status" aria-live="polite" aria-atomic="true">
+          <h3 id="explanation-title">What is happening?</h3>
+          <p id="explanation-text">
+            Start at 1 on the real axis. Move the slider or choose a special angle.
+          </p>
+          <p id="equation-text" class="equation">
+            e<sup>i·0</sup> = 1
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <section class="boundary" aria-labelledby="boundary-title">
+      <h2 id="boundary-title">Evidence boundary</h2>
+      <p>
+        The rotation and identity are proven mathematics. Philosophical or
+        spiritual meanings may be contemplated separately, but they are not
+        mathematical or empirical proof.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="https://github.com/LuckyGitHub777/eulers-identity">View the repository</a>
+      · <a href="https://github.com/LuckyGitHub777/eulers-identity/blob/main/docs/proof.md">Read the proof</a>
+      · <a href="https://github.com/LuckyGitHub777/eulers-identity/blob/main/CLAIMS.md">Review the claims</a>
+      · Private by design · No analytics · No data collection
+    </p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
