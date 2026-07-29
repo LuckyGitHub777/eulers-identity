@@ -3,10 +3,11 @@ message: "If you use this project, please cite it using the metadata below."
 title: "Euler's Identity"
 type: software
 version: 0.1.0
+date-released: 2026-07-29
 authors:
   - name: "Euler's Identity Project contributors"
 repository-code: "https://github.com/LuckyGitHub777/eulers-identity"
-url: "https://github.com/LuckyGitHub777/eulers-identity"
+url: "https://luckygithub777.github.io/eulers-identity/"
 license: MIT
 abstract: >-
   An interactive, evidence-layered introduction to Euler's identity,
