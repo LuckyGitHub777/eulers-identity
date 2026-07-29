@@ -9,7 +9,7 @@ from eulers_identity import exponential_series
 def main() -> None:
     target = cmath.exp(1j * math.pi)
 
-    print("terms | approximation of e^(iπ)              | absolute error")
+    print("terms | approximation of e^(i*pi)            | absolute error")
     print("------|---------------------------------------|---------------")
 
     for terms in (1, 2, 4, 8, 12, 20, 28):
