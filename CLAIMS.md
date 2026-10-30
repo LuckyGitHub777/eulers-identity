@@ -17,8 +17,9 @@ Registration records a claim's evidence classification; it does not mean every
 registered topic is implemented as a lesson in the current release. The
 `0.1.0` foundation teaches the identity, complex-plane rotation, power-series
 derivation, and numerical behavior. Matrix, phasor, interference, Fourier, and
-quantum teaching modules remain governed by the [roadmap](ROADMAP.md) until
-their stated release gates are completed.
+quantum teaching modules may exist on later development paths, but they remain
+governed by the [roadmap](ROADMAP.md) and are not released until their stated
+review gates are completed.
 
 ## Registered claims
 
@@ -34,6 +35,10 @@ their stated release gates are completed.
 | APP-001 | Complex exponentials are used to represent phasors | Standard application | Electrical engineering and signal analysis |
 | APP-002 | Relative phase affects interference | Standard application | Superposition of complex amplitudes |
 | APP-003 | Equal-magnitude amplitudes separated by phase $\pi$ cancel when added | Standard application | $A+Ae^{i\pi}=A-A=0$ |
+| APP-004 | Periodic signals may be represented by harmonically related complex exponentials through Fourier series | Standard application | Standard signals-and-systems formulation |
+| APP-005 | Fourier-transform conventions use complex exponentials to represent frequency content | Standard application | Sign and normalization conventions vary but must remain internally consistent |
+| APP-006 | A global quantum phase does not by itself change standard measurement probabilities | Standard application | States differing only by one common phase represent the same physical ray |
+| APP-007 | Relative quantum phase can affect interference when amplitudes are recombined | Standard application | Depends on state, basis, dynamics, and measurement context |
 | INT-001 | Euler's identity may symbolize unity, opposition, and return | Philosophical interpretation | Clearly labeled contemplative reading |
 | CONT-001 | Euler's identity may inspire spiritual contemplation | Spiritual contemplation | Individual or tradition-sensitive interpretation |
 | SPEC-001 | Euler's identity may inspire separately formulated hypotheses involving rotation or phase | Speculative | Any physical theory requires independent variables, dynamics, predictions, and evidence |
