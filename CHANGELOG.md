@@ -45,7 +45,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 ### Boundaries
 
 - Version `0.2.0` remains unreleased until independent mathematical review is complete.
-- Fourier, phasor, and quantum teaching modules remain future roadmap work.
+- Later phasor, Fourier, and quantum teaching modules are implemented on the separate unreleased `0.3.0` and `0.4.0` development paths and remain subject to their own review gates.
 
 ## [0.1.1] - Unreleased
 
