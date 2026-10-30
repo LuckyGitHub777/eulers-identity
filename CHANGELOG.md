@@ -4,6 +4,31 @@ All notable changes to this project are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] - Unreleased
+
+### Added
+
+- Fourier-series and Fourier-transform foundations using complex exponentials.
+- Quantum-phase module distinguishing global phase from relative phase.
+- Primary MIT OpenCourseWare references for Fourier and quantum-phase material.
+
+### Boundaries
+
+- Version `0.4.0` remains unreleased pending independent signal-processing and quantum review.
+- The quantum module does not claim that Euler's identity by itself is quantum interference or that quantum mechanics proves spiritual interpretations.
+
+## [0.3.0] - Unreleased
+
+### Added
+
+- Waves-and-phasors module using $Ae^{i(\omega t+\phi)}$.
+- Relative-phase and equal-amplitude cancellation explanations.
+- Accessible relative-phase laboratory and JavaScript phasor tests.
+
+### Boundaries
+
+- Version `0.3.0` remains unreleased pending independent engineering or signal-processing review.
+
 ## [0.2.0] - Unreleased
 
 ### Added

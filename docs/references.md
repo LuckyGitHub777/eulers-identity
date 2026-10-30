@@ -12,6 +12,17 @@ references.
 - OpenStax, *Calculus Volume 2*, Section 6.3, Taylor and Maclaurin Series:
   <https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series>
 
+## Signals, Fourier analysis, and quantum phase
+
+- MIT OpenCourseWare, *Signals and Systems*, Lecture 7: Continuous-Time Fourier Series:
+  <https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-7-continuous-time-fourier-series/>
+- MIT OpenCourseWare, *Signals and Systems*, readings on complex exponentials,
+  Fourier series, and Fourier transforms:
+  <https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/pages/readings/>
+- MIT OpenCourseWare, *22.51 Quantum Theory of Radiation Interactions*, complete
+  course notes:
+  <https://ocw.mit.edu/courses/22-51-quantum-theory-of-radiation-interactions-fall-2012/693972cea9cf9da5e4e9e86fbc72c9e7_MIT22_51F12_Notes.pdf>
+
 ## Python and numerical computing
 
 - Python documentation, `cmath`:
@@ -34,5 +45,6 @@ references.
 
 ## Scope note
 
-The version 0.1.0 foundation does not yet present a complete Fourier-analysis
-or quantum-mechanics reference module. Those topics remain on the roadmap.
+The released `0.1.0` foundation does not include the development Fourier or
+quantum modules. Those modules are implemented for review on later unreleased
+roadmap versions and require independent technical review before release.

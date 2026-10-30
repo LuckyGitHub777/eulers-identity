@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://eulers.id/phase.html">
+  <meta name="description" content="Explore relative phase and equal-amplitude cancellation with two phasors.">
+  <meta name="theme-color" content="#070a12">
+  <title>Euler’s Identity — Relative Phase Laboratory</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase.css">
+</head>
+<body>
+  <a class="skip-link" href="#phase-lab">Skip to the phase laboratory</a>
+
+  <header class="site-header">
+    <p class="eyebrow">Euler’s Identity · 0.3 Development</p>
+    <h1 class="phase-title">Relative Phase</h1>
+    <p class="lede">Rotate one equal phasor against another and watch their sum change.</p>
+  </header>
+
+  <main id="phase-lab" tabindex="-1">
+    <section class="intro" aria-labelledby="phase-intro-title">
+      <h2 id="phase-intro-title">Add two equal amplitudes</h2>
+      <p>
+        The first phasor is fixed at phase 0. Change the second phasor’s relative
+        phase from 0 to 2π. At π, the two equal amplitudes point in opposite
+        directions and their vector sum is exactly zero.
+      </p>
+    </section>
+
+    <p class="js-required-message" role="status">
+      JavaScript is required for the interactive laboratory. The mathematical
+      explanation remains available in the repository documentation.
+    </p>
+
+    <section class="experience-grid phase-grid" aria-label="Interactive relative-phase laboratory">
+      <div class="visual-panel">
+        <svg id="phase-plane" viewBox="-170 -170 340 340" role="img"
+             aria-labelledby="phase-plane-title phase-plane-description">
+          <title id="phase-plane-title">Two phasors and their vector sum</title>
+          <desc id="phase-plane-description">
+            One unit phasor is fixed on the positive real axis. A second unit
+            phasor rotates by the selected relative phase. Their sum is shown.
+          </desc>
+
+          <defs>
+            <marker id="phase-first-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+            <marker id="phase-second-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+            <marker id="phase-sum-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+          </defs>
+
+          <line class="axis" x1="-155" y1="0" x2="155" y2="0"></line>
+          <line class="axis" x1="0" y1="-155" x2="0" y2="155"></line>
+          <circle class="circle" cx="0" cy="0" r="70"></circle>
+          <circle class="phase-sum-circle" cx="0" cy="0" r="140"></circle>
+
+          <line id="phase-first" class="phase-vector first" x1="0" y1="0" x2="70" y2="0"
+                marker-end="url(#phase-first-arrow)"></line>
+          <line id="phase-second" class="phase-vector second" x1="0" y1="0" x2="70" y2="0"
+                marker-end="url(#phase-second-arrow)"></line>
+          <line id="phase-sum" class="phase-vector sum" x1="0" y1="0" x2="140" y2="0"
+                marker-end="url(#phase-sum-arrow)"></line>
+
+          <text class="axis-label" x="145" y="-8">Re</text>
+          <text class="axis-label" x="8" y="-145">Im</text>
+          <text class="axis-label" x="7" y="18">0</text>
+        </svg>
+      </div>
+
+      <div class="control-panel">
+        <div class="control-group">
+          <label for="phase-slider">Relative phase Δφ in radians</label>
+          <input id="phase-slider" type="range" min="0" max="6.283185307179586"
+                 step="0.001" value="0" aria-describedby="phase-help">
+          <p id="phase-help" class="help">
+            Use the slider or select an exact special phase.
+          </p>
+        </div>
+
+        <div class="preset-group" aria-label="Special relative phases">
+          <button type="button" data-phase="0">0</button>
+          <button type="button" data-phase="1.5707963267948966">π/2</button>
+          <button type="button" data-phase="3.141592653589793">π</button>
+          <button type="button" data-phase="4.71238898038469">3π/2</button>
+          <button type="button" data-phase="6.283185307179586">2π</button>
+        </div>
+
+        <dl class="readout">
+          <div><dt>Relative phase</dt><dd id="phase-value">0.000 rad</dd></div>
+          <div><dt>First phasor</dt><dd id="phase-first-value">1.000 + 0.000i</dd></div>
+          <div><dt>Second phasor</dt><dd id="phase-second-value">1.000 + 0.000i</dd></div>
+          <div><dt>Vector sum</dt><dd id="phase-sum-value">2.000 + 0.000i</dd></div>
+          <div><dt>Sum magnitude</dt><dd id="phase-magnitude-value">2.000</dd></div>
+        </dl>
+
+        <section class="explanation" aria-labelledby="phase-explanation-title">
+          <h3 id="phase-explanation-title">What is happening?</h3>
+          <p id="phase-explanation-text">
+            At zero relative phase, the equal phasors reinforce and the magnitude is 2.
+          </p>
+          <p id="phase-equation-text" class="equation">
+            1 + e^(i·0) = 2
+          </p>
+        </section>
+        <p id="phase-live-status" class="sr-only" role="status"
+           aria-live="polite" aria-atomic="true"></p>
+      </div>
+    </section>
+
+    <section class="boundary" aria-labelledby="phase-boundary-title">
+      <h2 id="phase-boundary-title">Evidence boundary</h2>
+      <p>
+        This laboratory demonstrates addition of equal complex amplitudes.
+        Cancellation at relative phase π is exact mathematics. A physical
+        interference experiment additionally depends on the physical system,
+        amplitudes, dynamics, and measurement context.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="/">Unit-circle lab</a>
+      · <a href="matrix.html">Matrix lab</a>
+      · <a href="https://github.com/LuckyGitHub777/eulers-identity/blob/main/docs/waves-phasors.md">Read waves and phasors</a>
+      · <a href="https://github.com/LuckyGitHub777/eulers-identity">View the repository</a>
+      · Private by design · No analytics · No data collection
+    </p>
+  </footer>
+
+  <script type="module" src="phase.js"></script>
+</body>
+</html>
