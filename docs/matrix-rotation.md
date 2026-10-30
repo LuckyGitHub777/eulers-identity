@@ -18,7 +18,7 @@ J=
 \end{pmatrix}.
 $$
 
-Multiplying (J) by a vector gives
+Multiplying $J$ by a vector gives
 
 $$
 J
@@ -33,19 +33,18 @@ x
 \end{pmatrix}.
 $$
 
-This is the same coordinate transformation produced by multiplication by
-(i):
+This is the same coordinate transformation produced by multiplication by $i$:
 
 $$
 i(x+i y)=-y+i x.
 $$
 
-So (J) is the real two-dimensional matrix representation of multiplication
-by (i).
+So $J$ is the real two-dimensional matrix representation of multiplication by
+$i$.
 
 ## The crucial identity
 
-Multiply (J) by itself:
+Multiply $J$ by itself:
 
 $$
 J^2
@@ -58,8 +57,8 @@ J^2
 -I.
 $$
 
-The powers of (J) therefore repeat in the same four-step pattern as the powers
-of (i):
+The powers of $J$ therefore repeat in the same four-step pattern as the powers
+of $i$:
 
 $$
 I,\ J,\ -I,\ -J,\ I,\ldots
@@ -97,7 +96,7 @@ e^{\theta J}
 I\cos\theta+J\sin\theta.
 $$
 
-Substituting (I) and (J) gives
+Substituting $I$ and $J$ gives
 
 $$
 \boxed{
@@ -114,7 +113,7 @@ This is the standard counterclockwise rotation matrix.
 
 ## The half-turn
 
-Set (\theta=\pi):
+Set $\theta=\pi$:
 
 $$
 e^{\pi J}
@@ -146,19 +145,26 @@ $$
 
 ## Complex and matrix descriptions agree
 
-The correspondence is:
-
 | Complex description | Matrix description |
 |---|---|
-| (i) | (J) |
-| (i^2=-1) | (J^2=-I) |
-| (e^{i\theta}) | (e^{\theta J}) |
-| multiplication by (e^{i\theta}) | multiplication by the rotation matrix |
-| (e^{i\pi}=-1) | (e^{\pi J}=-I) |
+| $i$ | $J$ |
+| $i^2=-1$ | $J^2=-I$ |
+| $e^{i\theta}$ | $e^{\theta J}$ |
+| multiplication by $e^{i\theta}$ | multiplication by the rotation matrix |
+| $e^{i\pi}=-1$ | $e^{\pi J}=-I$ |
 
 The repository's `rotation_matrix()` and `rotate_vector()` helpers implement
 the trigonometric rotation matrix directly. The derivation above explains why
 that matrix is also a matrix exponential.
+
+## Interactive laboratory
+
+The [matrix-rotation laboratory](https://eulers.id/matrix.html) lets a learner
+choose a vector and angle, inspect the rotation matrix, and compare the input and
+rotated vectors.
+
+The laboratory is implemented on the `0.2.0` development path and is not a
+separate claim of physical or metaphysical significance.
 
 ## What this view establishes
 
@@ -166,7 +172,4 @@ The matrix formulation shows that complex rotation and ordinary planar linear
 algebra are two representations of the same transformation.
 
 It does not make every matrix exponential a rotation. The special structure
-comes from the generator (J), which satisfies (J^2=-I).
-
-The planned interactive matrix laboratory remains a separate `0.2.0` release
-gate.
+comes from the generator $J$, which satisfies $J^2=-I$.
