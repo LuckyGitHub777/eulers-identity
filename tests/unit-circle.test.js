@@ -46,12 +46,17 @@ test("clampAngle keeps values within zero and two pi", () => {
   assert.equal(clampAngle(Math.PI), Math.PI);
 });
 
-test("describeAngle identifies the special angles", () => {
+test("describeAngle identifies exact special angles", () => {
   assert.equal(describeAngle(0), "0");
   assert.equal(describeAngle(Math.PI / 2), "π/2");
   assert.equal(describeAngle(Math.PI), "π");
   assert.equal(describeAngle((3 * Math.PI) / 2), "3π/2");
   assert.equal(describeAngle(2 * Math.PI), "2π");
+});
+
+test("describeAngle does not relabel nearby values as exact", () => {
+  assert.notEqual(describeAngle(3.140), "π");
+  assert.match(describeAngle(3.140), /^≈/);
 });
 
 test("formatSignedImaginary cleans zero and preserves sign", () => {

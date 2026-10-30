@@ -1,21 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://eulers.id/">
   <meta name="description" content="Explore Euler's identity through an accessible interactive unit circle.">
   <meta property="og:title" content="Euler’s Identity — Interactive Unit Circle">
   <meta property="og:description" content="Watch complex rotation reveal e^(iπ) + 1 = 0.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://luckygithub777.github.io/eulers-identity/">
-  <meta property="og:image" content="https://luckygithub777.github.io/eulers-identity/social-preview.png">
+  <meta property="og:url" content="https://eulers.id/">
+  <meta property="og:image" content="https://eulers.id/social-preview.png">
   <meta property="og:image:alt" content="Euler’s identity, e to the power i pi plus one equals zero, on a dark unit-circle background.">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Euler’s Identity — Interactive Unit Circle">
   <meta name="twitter:description" content="Watch complex rotation reveal e^(iπ) + 1 = 0.">
-  <meta name="twitter:image" content="https://luckygithub777.github.io/eulers-identity/social-preview.png">
+  <meta name="twitter:image" content="https://eulers.id/social-preview.png">
   <meta name="twitter:image:alt" content="Euler’s identity, e to the power i pi plus one equals zero, on a dark unit-circle background.">
   <meta name="theme-color" content="#070a12">
   <title>Euler’s Identity — Interactive Unit Circle</title>
@@ -40,6 +44,11 @@
         rotate. At θ = π, the point reaches −1. Add 1, and the result is 0.
       </p>
     </section>
+
+    <p class="js-required-message" role="status">
+      JavaScript is required for the interactive laboratory. The proof and
+      documentation remain available from the repository links below.
+    </p>
 
     <section class="experience-grid" aria-label="Interactive unit circle laboratory">
       <div class="visual-panel">
@@ -117,8 +126,7 @@
           <div><dt>Magnitude</dt><dd id="magnitude-value">1.000</dd></div>
         </dl>
 
-        <section class="explanation" aria-labelledby="explanation-title"
-                 role="status" aria-live="polite" aria-atomic="true">
+        <section class="explanation" aria-labelledby="explanation-title">
           <h3 id="explanation-title">What is happening?</h3>
           <p id="explanation-text">
             Start at 1 on the real axis. Move the slider or choose a special angle.
@@ -127,6 +135,8 @@
             e<sup>i·0</sup> = 1
           </p>
         </section>
+        <p id="live-status" class="sr-only" role="status"
+           aria-live="polite" aria-atomic="true"></p>
       </div>
     </section>
 

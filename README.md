@@ -6,7 +6,7 @@ $$
 
 **See how complex rotation reveals one of mathematics’ most elegant identities.**
 
-[Open the interactive experience](https://luckygithub777.github.io/eulers-identity/) ·
+[Open the interactive experience](https://eulers.id/) ·
 [Read the proof](docs/proof.md) ·
 [Run the code](#run-the-code) ·
 [Review the claims register](CLAIMS.md)
@@ -171,8 +171,8 @@ before opening an issue or pull request.
 
 ## Citation
 
-Citation metadata is provided in [CITATION.cff](CITATION.cff). GitHub will expose
-a **Cite this repository** control after the file is published.
+Citation metadata is provided in [CITATION.cff](CITATION.cff) and is available
+through GitHub’s **Cite this repository** control.
 
 ## Licensing
 

@@ -1,6 +1,7 @@
 const TAU = 2 * Math.PI;
 const RADIUS = 110;
 const CLEAN_EPSILON = 1e-10;
+const SPECIAL_ANGLE_EPSILON = 1e-12;
 
 export function clampAngle(angle) {
   return Math.min(TAU, Math.max(0, Number(angle)));
@@ -35,12 +36,12 @@ export function describeAngle(angle) {
   ];
 
   for (const [value, label] of specialAngles) {
-    if (Math.abs(theta - value) < 0.002) {
+    if (Math.abs(theta - value) <= SPECIAL_ANGLE_EPSILON) {
       return label;
     }
   }
 
-  return `${(theta / Math.PI).toFixed(3)}π`;
+  return `≈${(theta / Math.PI).toFixed(3)}π`;
 }
 
 export function formatSignedImaginary(value) {

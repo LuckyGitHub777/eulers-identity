@@ -17,6 +17,17 @@ def test_series_approaches_complex_exponential() -> None:
     assert errors[-1] < 1e-12
 
 
+@pytest.mark.parametrize(
+    "value",
+    [0j, 1 + 0j, -1 + 0j, 1 + 1j, -0.5 + 0.75j],
+)
+def test_series_matches_cmath_for_moderate_inputs(value: complex) -> None:
+    assert exponential_series(value, 60) == pytest.approx(
+        cmath.exp(value),
+        abs=1e-12,
+    )
+
+
 @pytest.mark.parametrize("terms", [0, -1, -10])
 def test_series_rejects_nonpositive_term_counts(terms: int) -> None:
     with pytest.raises(ValueError):

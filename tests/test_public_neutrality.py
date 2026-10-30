@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
-from urllib.parse import urlparse
 
 try:
     import tomllib
@@ -12,13 +11,8 @@ except ModuleNotFoundError:
     import tomli as tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
-REPOSITORY_URL = "https://github.com/LuckyGitHub777/eulers-identity"
-ALLOWED_PAGES_FILES = {
-    Path("README.md"),
-    Path("CITATION.cff"),
-    Path("pyproject.toml"),
-    Path("experience/index.html"),
-}
+PUBLIC_SITE_URL = "https://eulers.id/"
+SOCIAL_IMAGE_URL = "https://eulers.id/social-preview.png"
 SEARCHABLE_SUFFIXES = {
     ".cff",
     ".html",
@@ -66,8 +60,8 @@ def homepage_url() -> str:
     return metadata["project"]["urls"]["Homepage"]
 
 
-def pages_urls_by_file() -> dict[Path, set[str]]:
-    """Collect absolute GitHub Pages URLs from public text files."""
+def github_pages_urls() -> dict[Path, set[str]]:
+    """Collect stale absolute GitHub Pages URLs from public text files."""
     found: dict[Path, set[str]] = {}
     this_file = Path(__file__).resolve()
 
@@ -125,36 +119,19 @@ def test_conduct_policy_uses_neutral_reporting_routes() -> None:
     assert "project-level" in policy
 
 
-def test_pages_urls_are_predeploy_clean_or_postdeploy_consistent() -> None:
-    """Pages URLs must be absent before deployment or exact after verification."""
-    homepage = homepage_url()
-    citation = citation_url()
-    discovered = pages_urls_by_file()
-
-    if homepage == REPOSITORY_URL:
-        assert citation == REPOSITORY_URL
-        assert discovered == {}
-        assert "summary_large_image" not in read("experience/index.html")
-        return
-
-    parsed = urlparse(homepage)
-    assert parsed.scheme == "https"
-    assert parsed.hostname is not None
-    assert parsed.hostname.endswith(".github.io")
-
-    pages_url = homepage.rstrip("/") + "/"
-    image_url = pages_url + "social-preview.png"
-    allowed_urls = {pages_url, image_url}
-
-    assert citation == pages_url
-    assert set(discovered).issubset(ALLOWED_PAGES_FILES)
-    assert discovered
-    assert all(urls.issubset(allowed_urls) for urls in discovered.values())
+def test_public_urls_use_verified_canonical_domain() -> None:
+    """Project metadata must use the verified eulers.id canonical domain."""
+    assert homepage_url() == PUBLIC_SITE_URL
+    assert citation_url() == PUBLIC_SITE_URL
+    assert github_pages_urls() == {}
 
     readme = read("README.md")
     html = read("experience/index.html")
 
-    assert pages_url in readme
-    assert f'content="{pages_url}"' in html
-    assert f'content="{image_url}"' in html
+    assert f"[Open the interactive experience]({PUBLIC_SITE_URL})" in readme
+    assert f'<link rel="canonical" href="{PUBLIC_SITE_URL}">' in html
+    assert f'content="{PUBLIC_SITE_URL}"' in html
+    assert f'content="{SOCIAL_IMAGE_URL}"' in html
+    assert '<meta name="referrer" content="no-referrer">' in html
+    assert "connect-src 'none'" in html
     assert '<meta name="twitter:card" content="summary_large_image">' in html

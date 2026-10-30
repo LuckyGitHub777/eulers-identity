@@ -11,6 +11,15 @@ This register controls the project's evidence boundaries.
 - **Speculative** — requires independent theoretical or empirical support
 - **Excluded** — a claim this project does not make
 
+## Release coverage
+
+Registration records a claim's evidence classification; it does not mean every
+registered topic is implemented as a lesson in the current release. The
+`0.1.0` foundation teaches the identity, complex-plane rotation, power-series
+derivation, and numerical behavior. Matrix, phasor, interference, Fourier, and
+quantum teaching modules remain governed by the [roadmap](ROADMAP.md) until
+their stated release gates are completed.
+
 ## Registered claims
 
 | ID | Claim | Classification | Basis or boundary |
