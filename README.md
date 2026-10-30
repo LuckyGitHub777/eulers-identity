@@ -9,7 +9,8 @@ $$
 [Open the interactive experience](https://eulers.id/) ·
 [Read the proof](docs/proof.md) ·
 [Run the code](#run-the-code) ·
-[Review the claims register](CLAIMS.md)
+[Review the claims register](CLAIMS.md) ·
+[Read the closeout record](CLOSEOUT.md)
 
 ## What is Euler’s identity?
 
@@ -165,8 +166,7 @@ The `0.1.0` foundation release includes:
 Differential-equation and matrix derivations plus the matrix-rotation laboratory
 are implemented on the `0.2.0` development path. Waves/phasors and the relative-
 phase laboratory are implemented on the `0.3.0` path. Fourier and quantum-phase
-foundations are implemented on the `0.4.0` path. Independent technical review
-remains required before those development versions may be released.
+foundations are implemented on the `0.4.0` path. Independent technical review remains a future release gate for those development versions. The current implementation phase is closed; see [CLOSEOUT.md](CLOSEOUT.md).
 
 ### Known limitations
 
