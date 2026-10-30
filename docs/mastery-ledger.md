@@ -10,13 +10,13 @@ This ledger records demonstrated completion rather than aspiration.
 | Gate 1 | Power-series derivation | Complete | `docs/power-series.md`, tests |
 | Gate 2 | Differential-equation derivation | In review | `docs/differential-equations.md`; release review pending |
 | Gate 3 | Matrix rotation | In review | `docs/matrix-rotation.md`, `experience/matrix.html`, helper, and tests; independent review pending |
-| Gate 4 | Waves and phasors | Pending | Planned for 0.3.0 |
-| Gate 5 | Fourier analysis | Pending | Planned for 0.4.0 |
-| Gate 6 | Quantum phase | Pending | Planned for 0.4.0 |
+| Gate 4 | Waves and phasors | In review | `docs/waves-phasors.md`, `experience/phase.html`, tests; independent review pending |
+| Gate 5 | Fourier analysis | In review | `docs/fourier.md`; independent review pending |
+| Gate 6 | Quantum phase | In review | `docs/quantum-phase.md`; independent review pending |
 | Experience | Interactive unit circle | Complete | `experience/` |
 | Experience | Matrix-rotation laboratory | In review | `experience/matrix.html`, JavaScript tests; independent review pending |
 | Experience | Series laboratory | Pending | Command-line example only |
-| Experience | Phase laboratory | Pending | Planned for 0.3.0 |
+| Experience | Phase laboratory | In review | `experience/phase.html`, JavaScript tests; independent review pending |
 | Publication | Claims register | Complete | `CLAIMS.md` |
 | Publication | Version 0.1.0 | Released | Hosted checks, live Pages, repository protections, and release metadata verified |
 
