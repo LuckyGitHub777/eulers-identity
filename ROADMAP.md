@@ -29,12 +29,12 @@ They become mandatory completion gates for `1.0.0`.
 - [x] Derive $f'(\theta)=if(\theta)$ with $f(0)=1$
 - [x] Explain perpendicular velocity and circular motion
 - [x] Derive the matrix exponential
-- [ ] Add a matrix-rotation laboratory
+- [x] Add a matrix-rotation laboratory
 - [ ] Obtain an independent mathematical review
 
-The written derivations are implemented for review. Version `0.2.0` remains
-unreleased until the interactive laboratory and independent mathematical review
-are complete.
+The written derivations and interactive matrix laboratory are implemented for
+review. Version `0.2.0` remains unreleased until an independent mathematical
+review is complete.
 
 ## Version 0.3.0 — Waves and phasors
 
