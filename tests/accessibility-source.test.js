@@ -8,40 +8,69 @@ const htmlSource = readFileSync(
   "utf8"
 );
 
-test("uses a dedicated polite live-status node", () => {
+test("dynamic announcements use a dedicated small status region", () => {
   assert.match(
     htmlSource,
-    /id="live-status" class="sr-only" role="status"[\s\S]*aria-live="polite"/
+    /id="status-message"[^>]*role="status"[^>]*aria-live="polite"[^>]*aria-atomic="true"/
   );
-});
-
-test("playback status is separated from the full explanation region", () => {
-  assert.match(appSource, /liveStatus\.textContent/);
-  assert.match(appSource, /Animation paused at/);
   assert.doesNotMatch(
     htmlSource,
-    /<section class="explanation"[^>]*role="status"/
+    /class="explanation"[^>]*role="status"/
   );
 });
 
-test("hidden-tab suspension has explicit status", () => {
-  assert.match(
-    appSource,
-    /Animation paused because the tab became inactive\./
-  );
+test("the range exposes a programmatic description and dynamic aria-valuetext", () => {
+  assert.match(htmlSource, /id="angle-slider"[^>]*aria-describedby="angle-help"/s);
+  assert.match(appSource, /slider\.setAttribute\("aria-valuetext", spokenAngle\(theta\)\)/);
 });
 
-test("reduced motion uses a discrete quarter-turn action", () => {
-  assert.match(
-    appSource,
-    /matchMedia\("\(prefers-reduced-motion: reduce\)"\)/
-  );
+test("reduced motion replaces continuous playback with a discrete step", () => {
+  assert.match(appSource, /prefers-reduced-motion: reduce/);
   assert.match(appSource, /Step ¼ turn/);
-  assert.match(appSource, /stepQuarterTurn/);
+  assert.match(appSource, /stepQuarterTurn\(\)/);
 });
 
-test("no-JavaScript state fails closed", () => {
-  assert.match(htmlSource, /<html lang="en" class="no-js">/);
-  assert.match(htmlSource, /class="js-required-message"/);
-  assert.match(appSource, /classList\.remove\("no-js"\)/);
+test("hidden-tab playback is stopped with an explicit state message", () => {
+  assert.match(appSource, /document\.hidden && frameId !== null/);
+  assert.match(appSource, /Animation paused because this tab became inactive/);
+});
+
+test("dynamic equations are constructed as DOM text rather than innerHTML", () => {
+  assert.doesNotMatch(appSource, /innerHTML\s*=/);
+  assert.match(appSource, /equationText\.replaceChildren/);
+});
+
+test("range preserves special-angle precision with deterministic keyboard increments", () => {
+  assert.match(htmlSource, /id="angle-slider"[\s\S]*?step="any"/);
+  assert.match(appSource, /ArrowRight: 0\.001/);
+  assert.match(appSource, /PageUp: 0\.1/);
+  assert.match(appSource, /event\.preventDefault\(\)/);
+});
+
+test("exact special angles lead with exact symbolic language rather than rounded equality", () => {
+  assert.match(appSource, /exactly \$\{SPOKEN_SPECIAL_ANGLES\[exactLabel\]\} radians/);
+  assert.match(appSource, /approximately \$\{theta\.toFixed\(3\)\} radians numerically/);
+  assert.doesNotMatch(appSource, /\$\{theta\.toFixed\(3\)\} radians, exactly/);
+});
+
+test("special-angle presets expose persistent selected state", () => {
+  assert.match(htmlSource, /data-angle="3\.141592653589793" aria-pressed="false"/);
+  assert.match(appSource, /syncPresetButtons\(theta\)/);
+  assert.match(appSource, /button\.setAttribute\("aria-pressed"/);
+});
+
+test("special-angle group is programmatically named", () => {
+  assert.match(htmlSource, /class="preset-group" role="group" aria-label="Special angles"/);
+});
+
+test("social image alternative metadata is unique", () => {
+  assert.equal((htmlSource.match(/name="twitter:image:alt"/g) || []).length, 1);
+});
+
+test("controls fail closed until JavaScript initializes", () => {
+  assert.match(htmlSource, /id="angle-slider"[^>]*disabled/);
+  assert.match(htmlSource, /id="play-button"[^>]*disabled/);
+  assert.match(htmlSource, /id="reset-button"[^>]*disabled/);
+  assert.match(htmlSource, /id="explain-button"[^>]*disabled/);
+  assert.match(appSource, /control\.disabled = false/);
 });

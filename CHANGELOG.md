@@ -53,7 +53,11 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 - Corrected exact-versus-approximate special-angle labeling.
 - Added reduced-motion quarter-turn stepping and explicit inactive-tab pause status.
-- Added a dedicated quiet live-status region and no-JavaScript fallback.
+- Added a dedicated quiet live-status region, fail-closed controls, and a no-JavaScript fallback.
+- Preserved exact special-angle presets while making keyboard range movement deterministic.
+- Added hosted Chromium/Firefox/WebKit UAT plus a required Chromium smoke inside CI.
+- Added canonical post-deploy production smoke for the public site and development laboratories.
+- Expanded the current-main Python compatibility matrix and refreshed development/test tooling.
 - Updated public metadata to the verified canonical `https://eulers.id/` domain.
 - Added same-origin CSP and no-referrer browser metadata.
 - Expanded finite-series tests across representative moderate complex inputs.
