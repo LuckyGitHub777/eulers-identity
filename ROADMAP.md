@@ -38,19 +38,30 @@ review is complete.
 
 ## Version 0.3.0 — Waves and phasors
 
-- [ ] Introduce $Ae^{i(\omega t+\phi)}$
-- [ ] Connect rotation to sine and cosine traces
-- [ ] Demonstrate relative phase
-- [ ] Demonstrate equal-amplitude cancellation
-- [ ] Add engineering examples without overclaiming
+- [x] Introduce $Ae^{i(\omega t+\phi)}$
+- [x] Connect rotation to sine and cosine traces
+- [x] Demonstrate relative phase
+- [x] Demonstrate equal-amplitude cancellation
+- [x] Add engineering examples without overclaiming
+- [x] Add a relative-phase laboratory
+- [ ] Obtain independent engineering or signal-processing review
+
+The written phasor module and relative-phase laboratory are implemented for
+review. Version `0.3.0` remains unreleased until independent technical review
+is complete.
 
 ## Version 0.4.0 — Fourier and quantum phase
 
-- [ ] Introduce Fourier building blocks
-- [ ] Distinguish Fourier series and Fourier transforms
-- [ ] Explain global and relative quantum phase
-- [ ] Connect relative phase to interference
-- [ ] Add primary references and technical review
+- [x] Introduce Fourier building blocks
+- [x] Distinguish Fourier series and Fourier transforms
+- [x] Explain global and relative quantum phase
+- [x] Connect relative phase to interference
+- [x] Add primary references
+- [ ] Obtain independent signal-processing and quantum review
+
+The written Fourier and quantum-phase foundations are implemented for review.
+Version `0.4.0` remains unreleased until independent technical review is
+complete.
 
 ## Version 1.0.0 — Complete mastery experience
 
