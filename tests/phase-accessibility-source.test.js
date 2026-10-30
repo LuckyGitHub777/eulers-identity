@@ -26,7 +26,7 @@ test("phase laboratory exposes a polite live status", () => {
 
 test("phase laboratory states the evidence boundary", () => {
   assert.match(htmlSource, /Evidence boundary/);
-  assert.match(htmlSource, /physical interference experiment additionally depends/);
+  assert.match(htmlSource, /physical\s+interference experiment additionally depends/);
 });
 
 test("phase laboratory has restrictive same-origin metadata", () => {
