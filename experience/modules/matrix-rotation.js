@@ -9,7 +9,7 @@ export function rotationMatrix(theta) {
   const cosine = clean(Math.cos(angle));
   const sine = clean(Math.sin(angle));
   return [
-    [cosine, -sine],
+    [cosine, clean(-sine)],
     [sine, cosine],
   ];
 }
