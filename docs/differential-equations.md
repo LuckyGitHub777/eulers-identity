@@ -26,8 +26,8 @@ $$
 f(0)=1.
 $$
 
-The factor (i) is the key. Multiplying a complex number by (i) rotates it
-counterclockwise by (\pi/2).
+The factor $i$ is the key. Multiplying a complex number by $i$ rotates it
+counterclockwise by $\pi/2$.
 
 ## Real and imaginary components
 
@@ -63,7 +63,7 @@ $$
 (x',y')=(-y,x).
 $$
 
-That vector is perpendicular to the position vector ((x,y)), because
+That vector is perpendicular to the position vector $(x,y)$, because
 
 $$
 (x,y)\cdot(-y,x)=-xy+xy=0.
@@ -81,7 +81,7 @@ $$
 2xx'+2yy'.
 $$
 
-Substitute (x'=-y) and (y'=x):
+Substitute $x'=-y$ and $y'=x$:
 
 $$
 2x(-y)+2y(x)=0.
@@ -95,7 +95,7 @@ $$
 
 is constant.
 
-Because (f(0)=1), the initial point is ((1,0)), so the constant is (1):
+Because $f(0)=1$, the initial point is $(1,0)$, so the constant is $1$:
 
 $$
 x^2+y^2=1.
@@ -105,7 +105,7 @@ The trajectory stays on the unit circle.
 
 ## Recovering sine and cosine
 
-Differentiate (x'=-y):
+Differentiate $x'=-y$:
 
 $$
 x''=-y'=-x.
@@ -131,7 +131,7 @@ $$
 x(\theta)=\cos\theta.
 $$
 
-Since (y'=x) and (y(0)=0),
+Since $y'=x$ and $y(0)=0$,
 
 $$
 y(\theta)=\sin\theta.
@@ -149,7 +149,7 @@ $$
 \boxed{e^{i\theta}=\cos\theta+i\sin\theta}.
 $$
 
-At (\theta=\pi),
+At $\theta=\pi$,
 
 $$
 e^{i\pi}=-1,
