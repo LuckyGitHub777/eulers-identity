@@ -1,16 +1,21 @@
-"""Power-series approximations for the complex exponential."""
+"""Educational power-series approximations for the complex exponential."""
 
 from __future__ import annotations
 
 
 def exponential_series(z: complex, terms: int = 40) -> complex:
-    """Approximate e**z with the first ``terms`` exponential-series terms.
+    """Return the first ``terms`` of the Maclaurin series for ``e**z``.
 
     The recurrence ``term *= z / n`` avoids recomputing powers and factorials.
+    This function is intentionally transparent for learning and verification. Its
+    numerical accuracy depends on both ``|z|`` and the number of retained terms;
+    for large-magnitude inputs, a fixed truncation can be a poor approximation.
+    Use :func:`cmath.exp` when a production-quality exponential evaluation is the
+    goal rather than inspection of the series itself.
 
     Args:
-        z: A real or complex input.
-        terms: Number of terms to include. Must be a positive integer.
+        z: A real or complex input to the finite series.
+        terms: Number of terms to retain. Must be a positive integer.
 
     Raises:
         TypeError: If ``terms`` is not an integer.

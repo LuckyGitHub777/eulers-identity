@@ -12,8 +12,8 @@
 Do not open a public issue for a suspected vulnerability.
 
 Use the repository's **Security** tab and select **Report a vulnerability**.
-The public `0.1.0` tag must not be published until GitHub private vulnerability
-reporting is enabled and this route has been verified.
+Before publishing any public release, verify that GitHub private vulnerability
+reporting is enabled and that this route works as intended.
 
 If the control is unavailable, do not disclose the issue publicly. Wait until
 private vulnerability reporting is restored or use another private
@@ -29,7 +29,13 @@ Include:
 
 ## Security posture
 
-Version 0.1.0 is a local Python package and a static browser experience. It has
-no backend, login, advertising, analytics, remote API, persistent storage, or
-user-data collection. Development tools are optional and are not runtime
-dependencies.
+The `0.1.x` line is a local Python package and a static browser experience. It
+has no backend, login, advertising, project analytics, remote API, persistent
+storage, or application telemetry or user-data collection code. Development
+and browser-test tools are optional and
+are not runtime dependencies of the public experience.
+
+The browser experience uses a restrictive same-origin Content Security Policy,
+a no-referrer policy, and source guards that fail if runtime collection paths
+such as `fetch`, `XMLHttpRequest`, or `sendBeacon` are introduced without an
+intentional review.

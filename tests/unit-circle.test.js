@@ -6,6 +6,7 @@ import {
   describeAngle,
   formatSignedImaginary,
   pointAt,
+  specialAngleLabel,
 } from "../experience/modules/unit-circle.js";
 
 const TOLERANCE = 1e-12;
@@ -40,23 +41,39 @@ test("pointAt uses cleaned coordinates for SVG geometry", () => {
   assert.equal(point.y, 0);
 });
 
-test("clampAngle keeps values within zero and two pi", () => {
+test("clampAngle keeps finite values within zero and two pi", () => {
   assert.equal(clampAngle(-1), 0);
   assert.equal(clampAngle(20), 2 * Math.PI);
   assert.equal(clampAngle(Math.PI), Math.PI);
 });
 
-test("describeAngle identifies exact special angles", () => {
-  assert.equal(describeAngle(0), "0");
-  assert.equal(describeAngle(Math.PI / 2), "π/2");
-  assert.equal(describeAngle(Math.PI), "π");
-  assert.equal(describeAngle((3 * Math.PI) / 2), "3π/2");
-  assert.equal(describeAngle(2 * Math.PI), "2π");
+test("clampAngle rejects non-finite values instead of propagating NaN", () => {
+  for (const value of [Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]) {
+    assert.throws(() => clampAngle(value), TypeError);
+  }
 });
 
-test("describeAngle does not relabel nearby values as exact", () => {
-  assert.notEqual(describeAngle(3.140), "π");
-  assert.match(describeAngle(3.140), /^≈/);
+test("specialAngleLabel identifies exact special angles", () => {
+  assert.equal(specialAngleLabel(0), "0");
+  assert.equal(specialAngleLabel(Math.PI / 2), "π/2");
+  assert.equal(specialAngleLabel(Math.PI), "π");
+  assert.equal(specialAngleLabel((3 * Math.PI) / 2), "3π/2");
+  assert.equal(specialAngleLabel(2 * Math.PI), "2π");
+});
+
+test("nearby slider values are not mislabeled as exact special angles", () => {
+  assert.equal(specialAngleLabel(3.14), null);
+  assert.equal(specialAngleLabel(Math.PI - 0.001), null);
+  assert.equal(specialAngleLabel(Math.PI + 0.001), null);
+  assert.equal(specialAngleLabel(Math.PI + 1e-12), null);
+  assert.match(describeAngle(3.14), /^≈ /);
+  assert.notEqual(describeAngle(3.14), "π");
+});
+
+test("describeAngle distinguishes exact and approximate representations", () => {
+  assert.equal(describeAngle(Math.PI), "π");
+  assert.equal(describeAngle(Math.PI / 2), "π/2");
+  assert.match(describeAngle(1), /^≈ 0\.3183π$/);
 });
 
 test("formatSignedImaginary cleans zero and preserves sign", () => {

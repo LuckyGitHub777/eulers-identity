@@ -19,7 +19,7 @@ Thank you for helping improve Euler's Identity.
 3. Do not mix philosophical interpretation into mathematical proof sections.
 4. Add or update tests when behavior changes.
 5. Keep public documentation focused on the subject; do not add biographical or institution-specific material.
-6. Run:
+6. Run the reproducible local checks:
 
 ```bash
 python -m pip install -e ".[dev]"
@@ -28,8 +28,17 @@ python -m ruff check .
 python -m ruff format --check .
 python examples/minimal.py
 node --check experience/app.js
+node --check experience/matrix.js
+node --check experience/phase.js
 node --check experience/modules/unit-circle.js
+node --check experience/modules/matrix-rotation.js
+node --check experience/modules/phasor.js
+npm test
 ```
+
+Browser UAT is also enforced in GitHub Actions across Chromium, Firefox, and
+WebKit for changes that affect the experience. See `docs/validation.md` for the
+difference between automated evidence and human UAT.
 
 ## Mathematical corrections
 

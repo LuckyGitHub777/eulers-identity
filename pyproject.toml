@@ -21,6 +21,12 @@ classifiers = [
   "Intended Audience :: Education",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Topic :: Education",
   "Topic :: Scientific/Engineering :: Mathematics"
 ]
@@ -33,9 +39,12 @@ Issues = "https://github.com/LuckyGitHub777/eulers-identity/issues"
 
 [project.optional-dependencies]
 dev = [
-  "pytest>=8,<9",
-  "ruff>=0.15.22,<0.16",
+  "pytest>=9.2,<10",
+  "ruff>=0.17.3,<0.18",
   "tomli>=2,<3; python_version < '3.11'"
+]
+browser = [
+  "playwright==1.64.1"
 ]
 
 [tool.setuptools.packages.find]

@@ -10,16 +10,31 @@ Describe the focused problem this pull request solves.
 - [ ] Software or accessibility change
 - [ ] Documentation only
 
-## Verification
+## Local verification
 
 - [ ] `python -m pytest`
 - [ ] `python -m ruff check .`
 - [ ] `python -m ruff format --check .`
 - [ ] `python examples/minimal.py`
-- [ ] JavaScript syntax checked
-- [ ] Keyboard and mobile behavior reviewed when applicable
-- [ ] Claims register updated when applicable
+- [ ] `node --check experience/app.js` / `matrix.js` / `phase.js`
+- [ ] JavaScript helper modules pass `node --check`
+- [ ] `npm test`
+- [ ] `git diff --check`
+
+## Hosted verification
+
+- [ ] CI passes for every supported Python version in the matrix
+- [ ] Browser UAT passes in Chromium, Firefox, and WebKit when applicable
+- [ ] Pages deployment and canonical production smoke pass when applicable
+
+## Human review
+
+- [ ] Keyboard behavior reviewed when applicable
+- [ ] Manual assistive-technology review completed or explicitly left OPEN
+- [ ] Physical mobile-device review completed or explicitly left OPEN
+- [ ] Claims register reviewed when applicable
 
 ## Boundaries
 
-Explain any limitation, assumption, deferred work, or unresolved uncertainty.
+Explain every limitation, assumption, deferred activity, or unresolved uncertainty.
+Do not convert automated evidence into a claim of human UAT completion.

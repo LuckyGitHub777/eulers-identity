@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "experience/**"
+      - "tests/production_smoke.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -37,4 +38,12 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+      - name: Set up Python for production verification
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.14"
+
+      - name: Verify canonical production surface
+        run: python tests/production_smoke.py --url https://eulers.id/
