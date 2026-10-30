@@ -182,9 +182,7 @@ def exercise_development_labs(page: Page, base_url: str) -> None:
         response = page.goto(base_url + path, wait_until="networkidle")
         assert response is not None and response.ok
         assert page.title() == title
-        assert (
-            page.locator('link[rel="canonical"]').get_attribute("href") == canonical
-        )
+        assert page.locator('link[rel="canonical"]').get_attribute("href") == canonical
         assert page.evaluate(
             "document.documentElement.scrollWidth <= window.innerWidth"
         )
