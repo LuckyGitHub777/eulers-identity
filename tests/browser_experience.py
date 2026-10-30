@@ -144,7 +144,12 @@ def exercise_page(page: Page, url: str) -> None:
     )
     assert radius_opacity < 0.5
 
-    page.locator(".skip-link").click()
+    skip_link = page.locator(".skip-link")
+    skip_link.focus()
+    assert page.evaluate(
+        "document.activeElement.classList.contains('skip-link')"
+    )
+    page.keyboard.press("Enter")
     page.wait_for_timeout(50)
     assert page.evaluate("document.activeElement.id") == "experience"
 
