@@ -1,0 +1,50 @@
+.phase-title {
+  font-size: clamp(2.6rem, 9vw, 6rem);
+}
+
+.phase-grid {
+  margin-top: 1rem;
+}
+
+#phase-plane {
+  width: min(100%, 42rem);
+  height: auto;
+  overflow: visible;
+}
+
+.phase-sum-circle {
+  fill: none;
+  stroke: var(--border);
+  stroke-dasharray: 5 7;
+  stroke-width: 1;
+}
+
+.phase-vector {
+  stroke-linecap: round;
+  stroke-width: 3.5;
+}
+
+.phase-vector.first {
+  stroke: var(--real);
+}
+
+.phase-vector.second {
+  stroke: var(--imaginary);
+}
+
+.phase-vector.sum {
+  stroke: var(--gold-light);
+  stroke-width: 4;
+}
+
+#phase-first-arrow path {
+  fill: var(--real);
+}
+
+#phase-second-arrow path {
+  fill: var(--imaginary);
+}
+
+#phase-sum-arrow path {
+  fill: var(--gold-light);
+}
