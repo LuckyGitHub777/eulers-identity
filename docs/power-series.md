@@ -85,3 +85,9 @@ python examples/series_convergence.py
 ```
 
 The approximations are numerical. The derivation above is mathematical.
+
+The finite helper is tested on the intended $i\pi$ demonstration and on
+representative moderate complex inputs. Numerical accuracy for arbitrary inputs
+depends on the input magnitude, number of retained terms, and floating-point
+behavior; the finite helper is not an error-bound certificate for all complex
+values.

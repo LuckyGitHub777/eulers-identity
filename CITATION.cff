@@ -7,7 +7,7 @@ date-released: 2026-07-29
 authors:
   - name: "Euler's Identity Project contributors"
 repository-code: "https://github.com/LuckyGitHub777/eulers-identity"
-url: "https://luckygithub777.github.io/eulers-identity/"
+url: "https://eulers.id/"
 license: MIT
 abstract: >-
   An interactive, evidence-layered introduction to Euler's identity,

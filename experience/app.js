@@ -5,6 +5,9 @@ import {
   pointAt,
 } from "./modules/unit-circle.js";
 
+document.documentElement.classList.remove("no-js");
+document.documentElement.classList.add("js");
+
 const slider = document.querySelector("#angle-slider");
 const rotatingPoint = document.querySelector("#rotating-point");
 const radiusVector = document.querySelector("#radius-vector");
@@ -19,9 +22,9 @@ const realValue = document.querySelector("#real-value");
 const imagValue = document.querySelector("#imag-value");
 const complexValue = document.querySelector("#complex-value");
 const magnitudeValue = document.querySelector("#magnitude-value");
-const explanationRegion = document.querySelector(".explanation");
 const explanationText = document.querySelector("#explanation-text");
 const equationText = document.querySelector("#equation-text");
+const liveStatus = document.querySelector("#live-status");
 
 const playButton = document.querySelector("#play-button");
 const resetButton = document.querySelector("#reset-button");
@@ -30,6 +33,7 @@ const presetButtons = document.querySelectorAll("[data-angle]");
 
 const skipLink = document.querySelector(".skip-link");
 const experience = document.querySelector("#experience");
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 skipLink.addEventListener("click", () => {
   window.requestAnimationFrame(() => {
@@ -41,6 +45,14 @@ let frameId = null;
 let previousTimestamp = null;
 let explanationStep = 0;
 
+const SPOKEN_SPECIAL_ANGLES = new Map([
+  ["0", "exactly zero radians"],
+  ["π/2", "exactly pi over two radians"],
+  ["π", "exactly pi radians"],
+  ["3π/2", "exactly three pi over two radians"],
+  ["2π", "exactly two pi radians"],
+]);
+
 function setLine(line, x1, y1, x2, y2) {
   line.setAttribute("x1", x1);
   line.setAttribute("y1", y1);
@@ -48,13 +60,33 @@ function setLine(line, x1, y1, x2, y2) {
   line.setAttribute("y2", y2);
 }
 
+function describeAngleForSpeech(theta) {
+  const label = describeAngle(theta);
+  const exact = SPOKEN_SPECIAL_ANGLES.get(label);
+
+  if (exact) {
+    return `${exact}, approximately ${theta.toFixed(3)} radians numerically`;
+  }
+
+  return (
+    `${theta.toFixed(3)} radians, approximately ` +
+    `${(theta / Math.PI).toFixed(3)} pi`
+  );
+}
+
+function setEquation(text) {
+  equationText.textContent = text;
+}
+
+function idleMotionLabel() {
+  return reducedMotionQuery.matches ? "Step ¼ turn" : "Play";
+}
+
 function update(angle, { preserveExplanation = false } = {}) {
   const theta = clampAngle(angle);
+  const angleDescription = describeAngle(theta);
   slider.value = String(theta);
-  slider.setAttribute(
-    "aria-valuetext",
-    `${theta.toFixed(3)} radians, ${describeAngle(theta)}`
-  );
+  slider.setAttribute("aria-valuetext", describeAngleForSpeech(theta));
   const point = pointAt(theta);
 
   rotatingPoint.setAttribute("cx", point.x);
@@ -64,7 +96,7 @@ function update(angle, { preserveExplanation = false } = {}) {
   setLine(realProjection, 0, 0, point.x, 0);
   setLine(imagProjection, point.x, 0, point.x, point.y);
 
-  angleValue.textContent = `${theta.toFixed(3)} rad (${describeAngle(theta)})`;
+  angleValue.textContent = `${theta.toFixed(3)} rad (${angleDescription})`;
   realValue.textContent = point.real.toFixed(3);
   imagValue.textContent = point.imaginary.toFixed(3);
   complexValue.textContent =
@@ -78,9 +110,10 @@ function update(angle, { preserveExplanation = false } = {}) {
     originPoint.classList.add("hidden");
     explanationText.textContent =
       "The real part is cos θ and the imaginary part is sin θ.";
-    equationText.innerHTML =
-      `e<sup>i·${describeAngle(theta)}</sup> = ` +
-      `${point.real.toFixed(3)} ${formatSignedImaginary(point.imaginary)}`;
+    setEquation(
+      `e^(i·${angleDescription}) = ` +
+      `${point.real.toFixed(3)} ${formatSignedImaginary(point.imaginary)}`
+    );
     explainButton.textContent = "Explain Euler’s identity";
   }
 }
@@ -94,17 +127,13 @@ function stopPlayback({ announce = false } = {}) {
 
   frameId = null;
   previousTimestamp = null;
-  playButton.textContent = "Play";
+  playButton.textContent = idleMotionLabel();
 
-  if (wasPlaying) {
-    explanationRegion.setAttribute("aria-live", "polite");
-
-    if (announce) {
-      const theta = Number(slider.value);
-      explanationText.textContent =
-        `Animation paused at ${describeAngle(theta)} ` +
-        `(${theta.toFixed(3)} radians).`;
-    }
+  if (wasPlaying && announce) {
+    const theta = Number(slider.value);
+    liveStatus.textContent =
+      `Animation paused at ${describeAngle(theta)} ` +
+      `(${theta.toFixed(3)} radians).`;
   }
 }
 
@@ -125,7 +154,27 @@ function animate(timestamp) {
   frameId = requestAnimationFrame(animate);
 }
 
+function stepQuarterTurn() {
+  stopPlayback();
+  const current = Number(slider.value);
+  let next = current + Math.PI / 2;
+
+  if (next > 2 * Math.PI) {
+    next -= 2 * Math.PI;
+  }
+
+  update(next);
+  liveStatus.textContent =
+    `Advanced one quarter turn to ${describeAngle(next)} ` +
+    `(${next.toFixed(3)} radians).`;
+}
+
 function togglePlayback() {
+  if (reducedMotionQuery.matches) {
+    stepQuarterTurn();
+    return;
+  }
+
   if (frameId !== null) {
     stopPlayback({ announce: true });
     return;
@@ -135,8 +184,8 @@ function togglePlayback() {
   additionVector.classList.add("hidden");
   additionLabel.classList.add("hidden");
   originPoint.classList.add("hidden");
-  explanationRegion.setAttribute("aria-live", "off");
   explanationText.textContent = "Animation running. Press Pause to stop.";
+  liveStatus.textContent = "Animation running. Press Pause to stop.";
   playButton.textContent = "Pause";
   frameId = requestAnimationFrame(animate);
 }
@@ -149,8 +198,9 @@ function resetExperience() {
   originPoint.classList.add("hidden");
   explanationText.textContent =
     "Start at 1 on the real axis. Move the slider or choose a special angle.";
-  equationText.innerHTML = "e<sup>i·0</sup> = 1";
+  setEquation("e^(i·0) = 1");
   explainButton.textContent = "Explain Euler’s identity";
+  liveStatus.textContent = "";
   update(0, { preserveExplanation: true });
 }
 
@@ -165,7 +215,7 @@ function explainIdentity() {
     update(0, { preserveExplanation: true });
     explanationText.textContent =
       "Step 1 of 3: Begin at 1 on the positive real axis.";
-    equationText.innerHTML = "e<sup>i·0</sup> = 1";
+    setEquation("e^(i·0) = 1");
     explainButton.textContent = "Next: rotate by π";
     return;
   }
@@ -177,7 +227,7 @@ function explainIdentity() {
     update(Math.PI, { preserveExplanation: true });
     explanationText.textContent =
       "Step 2 of 3: A half-turn, π radians, carries 1 to −1.";
-    equationText.innerHTML = "e<sup>iπ</sup> = −1";
+    setEquation("e^(iπ) = −1");
     explainButton.textContent = "Next: add 1";
     return;
   }
@@ -188,8 +238,18 @@ function explainIdentity() {
   originPoint.classList.remove("hidden");
   explanationText.textContent =
     "Step 3 of 3: Add 1 to −1. The result is exactly zero.";
-  equationText.innerHTML = "e<sup>iπ</sup> + 1 = −1 + 1 = 0";
+  setEquation("e^(iπ) + 1 = −1 + 1 = 0");
   explainButton.textContent = "Start again";
+}
+
+function syncMotionPreference() {
+  if (reducedMotionQuery.matches && frameId !== null) {
+    stopPlayback();
+    liveStatus.textContent =
+      "Continuous animation stopped because reduced motion is enabled.";
+  } else if (frameId === null) {
+    playButton.textContent = idleMotionLabel();
+  }
 }
 
 slider.addEventListener("input", () => {
@@ -209,9 +269,19 @@ resetButton.addEventListener("click", resetExperience);
 explainButton.addEventListener("click", explainIdentity);
 
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
+  if (document.hidden && frameId !== null) {
     stopPlayback();
+    const message = "Animation paused because the tab became inactive.";
+    explanationText.textContent = message;
+    liveStatus.textContent = message;
   }
 });
 
+if (typeof reducedMotionQuery.addEventListener === "function") {
+  reducedMotionQuery.addEventListener("change", syncMotionPreference);
+} else {
+  reducedMotionQuery.addListener(syncMotionPreference);
+}
+
 resetExperience();
+syncMotionPreference();

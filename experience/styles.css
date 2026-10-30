@@ -91,6 +91,36 @@ a:focus-visible {
   top: 1rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.js-required-message {
+  display: none;
+  max-width: 52rem;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+}
+
+.no-js .js-required-message {
+  display: block;
+}
+
+.no-js .experience-grid {
+  display: none;
+}
 
 #experience:focus {
   outline: 2px solid var(--gold);
@@ -323,7 +353,7 @@ h3 {
 }
 
 .boundary h2 {
-  margin-top: 0;
+  margin: 0;
 }
 
 footer {

@@ -4,6 +4,24 @@ All notable changes to this project are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - Unreleased
+
+### Changed
+
+- Corrected exact-versus-approximate special-angle labeling.
+- Added reduced-motion quarter-turn stepping and explicit inactive-tab pause status.
+- Added a dedicated quiet live-status region and no-JavaScript fallback.
+- Updated public metadata to the verified canonical `https://eulers.id/` domain.
+- Added same-origin CSP and no-referrer browser metadata.
+- Expanded finite-series tests across representative moderate complex inputs.
+- Clarified current-release versus future-module claims in the claims register.
+- Corrected stale citation-control wording.
+
+### Boundaries
+
+- No new advanced differential-equation, Fourier, phasor, or quantum learning modules.
+- Human learner observation, manual screen-reader review, and physical-device review remain `0.1.x` validation activities.
+
 ## [0.1.0] - 2026-07-29
 
 ### Added
