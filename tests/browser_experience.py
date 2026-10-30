@@ -88,7 +88,7 @@ def exercise_page(page: Page, url: str) -> None:
     pi_button.click()
     assert abs(float(slider.input_value()) - 3.141592653589793) < 1e-12
     assert pi_button.get_attribute("aria-pressed") == "true"
-    assert "π rad (≈ 3.142)" == page.locator("#angle-value").inner_text()
+    assert page.locator("#angle-value").inner_text() == "π rad (≈ 3.142)"
     exact_spoken = slider.get_attribute("aria-valuetext") or ""
     assert "exactly pi radians" in exact_spoken
     assert "approximately 3.142 radians numerically" in exact_spoken
@@ -161,19 +161,33 @@ def exercise_development_labs(page: Page, base_url: str) -> None:
     page.on("pageerror", lambda error: errors.append(str(error)))
     page.on(
         "console",
-        lambda message: (errors.append(message.text) if message.type == "error" else None),
+        lambda message: (
+            errors.append(message.text) if message.type == "error" else None
+        ),
     )
 
     cases = (
-        ("matrix.html", "Euler’s Identity — Matrix Rotation Laboratory", "https://eulers.id/matrix.html"),
-        ("phase.html", "Euler’s Identity — Relative Phase Laboratory", "https://eulers.id/phase.html"),
+        (
+            "matrix.html",
+            "Euler’s Identity — Matrix Rotation Laboratory",
+            "https://eulers.id/matrix.html",
+        ),
+        (
+            "phase.html",
+            "Euler’s Identity — Relative Phase Laboratory",
+            "https://eulers.id/phase.html",
+        ),
     )
     for path, title, canonical in cases:
         response = page.goto(base_url + path, wait_until="networkidle")
         assert response is not None and response.ok
         assert page.title() == title
-        assert page.locator('link[rel="canonical"]').get_attribute("href") == canonical
-        assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+        assert (
+            page.locator('link[rel="canonical"]').get_attribute("href") == canonical
+        )
+        assert page.evaluate(
+            "document.documentElement.scrollWidth <= window.innerWidth"
+        )
 
     assert not errors, "Development-lab runtime errors: " + " | ".join(errors)
 
