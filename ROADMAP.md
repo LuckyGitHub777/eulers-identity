@@ -2,6 +2,8 @@
 
 The repository grows through completed, reviewable learning gates.
 
+> **Closeout:** the current implementation phase is complete. Unchecked review and learner-validation items below are deferred future release gates, not active implementation blockers. See [CLOSEOUT.md](CLOSEOUT.md).
+
 ## Version 0.1.0 — Foundation
 
 - [x] Direct derivation
