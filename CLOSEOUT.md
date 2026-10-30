@@ -5,14 +5,14 @@
 **Repository:** `LuckyGitHub777/eulers-identity`  
 **Visibility:** public  
 **Default branch:** `main`  
-**Closeout baseline:** `9ab146e1a62197698d0495551643a106726f6b6c`
+**Pre-closeout main baseline:** `9ab146e1a62197698d0495551643a106726f6b6c`
 
 ## Verified operational state
 
 - protected `main`;
-- GitHub-signature-verified closeout commit;
-- CI PASS on the closeout baseline;
-- internal-link validation PASS on the closeout baseline;
+- GitHub-signature-verified final closeout merge;
+- post-merge CI PASS on the final closeout `main` state;
+- post-merge internal-link validation PASS on the final closeout `main` state;
 - latest experience-bearing Pages deployment PASS;
 - open implementation pull requests: 0;
 - released technical foundation: `v0.1.0`;
