@@ -21,9 +21,7 @@ SEARCHABLE_SUFFIXES = {
     ".yml",
     ".yaml",
 }
-PAGES_URL_PATTERN = re.compile(
-    r'https://[^\s"\')>]+\.github\.io(?:/[^\s"\')>]*)?'
-)
+PAGES_URL_PATTERN = re.compile(r'https://[^\s"\')>]+\.github\.io(?:/[^\s"\')>]*)?')
 
 ALLOWED_README_HEADINGS = {
     "# Euler’s Identity",
