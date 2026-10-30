@@ -56,6 +56,10 @@ The interactive unit circle lets you:
 
 The complete browser source is in [`experience/`](experience/).
 
+The [`0.2.0` matrix-rotation laboratory](https://eulers.id/matrix.html) is also
+implemented for development review. It is not part of the released `0.1.0`
+foundation.
+
 The experience uses only static HTML, CSS, JavaScript, and SVG. It has no
 backend, accounts, analytics, advertising, or data collection.
 
@@ -155,10 +159,10 @@ The `0.1.0` foundation release includes:
 - accessible interactive unit circle
 - claims register and source boundaries
 
-Differential-equation and matrix derivations are now implemented on the
-`0.2.0` development path. The matrix laboratory and independent mathematical
-review remain release gates, so `0.2.0` is not yet complete. Fourier, phasor,
-and quantum modules remain on the [roadmap](ROADMAP.md).
+Differential-equation and matrix derivations plus the matrix-rotation laboratory
+are now implemented on the `0.2.0` development path. Independent mathematical
+review remains the release gate, so `0.2.0` is not yet complete. Fourier,
+phasor, and quantum modules remain on the [roadmap](ROADMAP.md).
 
 ### Known limitations
 

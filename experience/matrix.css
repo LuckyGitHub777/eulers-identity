@@ -1,0 +1,75 @@
+.matrix-title {
+  font-size: clamp(2.6rem, 9vw, 6rem);
+}
+
+.matrix-grid {
+  margin-top: 1rem;
+}
+
+#matrix-plane {
+  width: min(100%, 42rem);
+  height: auto;
+  overflow: visible;
+}
+
+#vector-arrow path {
+  fill: var(--real);
+}
+
+#rotated-arrow path {
+  fill: var(--gold-light);
+}
+
+.matrix-vector {
+  stroke-linecap: round;
+  stroke-width: 3.5;
+}
+
+.original-vector {
+  stroke: var(--real);
+}
+
+.rotated-vector {
+  stroke: var(--gold-light);
+}
+
+.matrix-point {
+  stroke: #111;
+  stroke-width: 2;
+}
+
+.original-point {
+  fill: var(--real);
+}
+
+.rotated-point {
+  fill: var(--gold-light);
+}
+
+.matrix-input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.matrix-input-grid input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.6rem;
+  color: var(--text);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+
+.matrix-equation {
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .matrix-input-grid {
+    grid-template-columns: 1fr;
+  }
+}

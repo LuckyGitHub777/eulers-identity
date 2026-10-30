@@ -4,6 +4,24 @@ All notable changes to this project are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] - Unreleased
+
+### Added
+
+- Differential-equation derivation of unit-circle motion from $f'(\theta)=if(\theta)$.
+- Matrix-exponential derivation of planar rotation from $J^2=-I$.
+- Accessible matrix-rotation laboratory with configurable vectors and angles.
+- JavaScript tests for rotation, determinant preservation, accessibility metadata, and evidence boundaries.
+
+### Fixed
+
+- Restored inline mathematical formatting in the new differential-equation and matrix documentation.
+
+### Boundaries
+
+- Version `0.2.0` remains unreleased until independent mathematical review is complete.
+- Fourier, phasor, and quantum teaching modules remain future roadmap work.
+
 ## [0.1.1] - Unreleased
 
 ### Changed

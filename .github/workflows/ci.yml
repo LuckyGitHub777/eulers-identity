@@ -47,7 +47,9 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check experience/app.js
+          node --check experience/matrix.js
           node --check experience/modules/unit-circle.js
+          node --check experience/modules/matrix-rotation.js
 
       - name: Test JavaScript behavior and accessibility contracts
         run: npm test
