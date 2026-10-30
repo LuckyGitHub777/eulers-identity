@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://eulers.id/matrix.html">
+  <meta name="description" content="Explore planar rotation through a 2 by 2 rotation matrix.">
+  <meta name="theme-color" content="#070a12">
+  <title>Euler’s Identity — Matrix Rotation Laboratory</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="matrix.css">
+</head>
+<body>
+  <a class="skip-link" href="#matrix-lab">Skip to the matrix laboratory</a>
+
+  <header class="site-header">
+    <p class="eyebrow">Euler’s Identity · 0.2 Development</p>
+    <h1 class="matrix-title">Matrix Rotation</h1>
+    <p class="lede">See the same rotation as complex multiplication and as linear algebra.</p>
+  </header>
+
+  <main id="matrix-lab" tabindex="-1">
+    <section class="intro" aria-labelledby="matrix-intro-title">
+      <h2 id="matrix-intro-title">Apply a rotation matrix</h2>
+      <p>
+        Choose a vector and an angle. The laboratory applies
+        <span aria-label="R of theta">R(θ)</span> and shows the rotated vector,
+        determinant, and matrix entries.
+      </p>
+    </section>
+
+    <p class="js-required-message" role="status">
+      JavaScript is required for the interactive laboratory. The derivation
+      remains available in the repository documentation.
+    </p>
+
+    <section class="experience-grid matrix-grid" aria-label="Interactive matrix-rotation laboratory">
+      <div class="visual-panel">
+        <svg id="matrix-plane" viewBox="-180 -180 360 360" role="img"
+             aria-labelledby="matrix-plane-title matrix-plane-description">
+          <title id="matrix-plane-title">Planar vector rotation</title>
+          <desc id="matrix-plane-description">
+            An original vector and its rotated image are displayed on Cartesian axes.
+          </desc>
+
+          <defs>
+            <marker id="vector-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+            <marker id="rotated-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+          </defs>
+
+          <line class="axis" x1="-165" y1="0" x2="165" y2="0"></line>
+          <line class="axis" x1="0" y1="-165" x2="0" y2="165"></line>
+
+          <line id="original-vector" class="matrix-vector original-vector"
+                x1="0" y1="0" x2="110" y2="0"
+                marker-end="url(#vector-arrow)"></line>
+          <line id="rotated-vector" class="matrix-vector rotated-vector"
+                x1="0" y1="0" x2="110" y2="0"
+                marker-end="url(#rotated-arrow)"></line>
+
+          <circle id="original-point" class="matrix-point original-point" cx="110" cy="0" r="5"></circle>
+          <circle id="rotated-point" class="matrix-point rotated-point" cx="110" cy="0" r="5"></circle>
+
+          <text class="axis-label" x="150" y="-8">x</text>
+          <text class="axis-label" x="8" y="-150">y</text>
+          <text class="axis-label" x="7" y="18">0</text>
+        </svg>
+      </div>
+
+      <div class="control-panel">
+        <div class="matrix-input-grid">
+          <div class="control-group">
+            <label for="vector-x">Vector x</label>
+            <input id="vector-x" type="number" value="1" step="0.1" inputmode="decimal">
+          </div>
+          <div class="control-group">
+            <label for="vector-y">Vector y</label>
+            <input id="vector-y" type="number" value="0" step="0.1" inputmode="decimal">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label for="matrix-angle-slider">Angle θ in radians</label>
+          <input id="matrix-angle-slider" type="range" min="0" max="6.283185307179586"
+                 step="0.001" value="0" aria-describedby="matrix-angle-help">
+          <p id="matrix-angle-help" class="help">
+            Use the slider or select an exact special angle.
+          </p>
+        </div>
+
+        <div class="preset-group" aria-label="Special angles">
+          <button type="button" data-matrix-angle="0">0</button>
+          <button type="button" data-matrix-angle="1.5707963267948966">π/2</button>
+          <button type="button" data-matrix-angle="3.141592653589793">π</button>
+          <button type="button" data-matrix-angle="4.71238898038469">3π/2</button>
+          <button type="button" data-matrix-angle="6.283185307179586">2π</button>
+        </div>
+
+        <dl class="readout matrix-readout">
+          <div><dt>Angle</dt><dd id="matrix-angle-value">0.000 rad</dd></div>
+          <div><dt>Input vector</dt><dd id="input-vector-value">(1.000, 0.000)</dd></div>
+          <div><dt>Rotated vector</dt><dd id="rotated-vector-value">(1.000, 0.000)</dd></div>
+          <div><dt>Determinant</dt><dd id="determinant-value">1.000</dd></div>
+        </dl>
+
+        <section class="explanation" aria-labelledby="matrix-equation-title">
+          <h3 id="matrix-equation-title">Rotation matrix</h3>
+          <p id="matrix-equation-text" class="equation matrix-equation">
+            R(0) = [[1.000, 0.000], [0.000, 1.000]]
+          </p>
+          <p id="matrix-explanation-text">
+            At θ = 0, the vector is unchanged.
+          </p>
+        </section>
+        <p id="matrix-live-status" class="sr-only" role="status"
+           aria-live="polite" aria-atomic="true"></p>
+      </div>
+    </section>
+
+    <section class="boundary" aria-labelledby="matrix-boundary-title">
+      <h2 id="matrix-boundary-title">Mathematical boundary</h2>
+      <p>
+        This laboratory demonstrates planar linear algebra. The matrix derivation
+        is documented separately and does not, by itself, establish a physical
+        or metaphysical theory.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="/">Return to the unit circle</a>
+      · <a href="https://github.com/LuckyGitHub777/eulers-identity/blob/main/docs/matrix-rotation.md">Read the matrix derivation</a>
+      · <a href="https://github.com/LuckyGitHub777/eulers-identity">View the repository</a>
+      · Private by design · No analytics · No data collection
+    </p>
+  </footer>
+
+  <script type="module" src="matrix.js"></script>
+</body>
+</html>
