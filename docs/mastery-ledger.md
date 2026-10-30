@@ -8,8 +8,8 @@ This ledger records demonstrated completion rather than aspiration.
 | Foundation | Unit-circle interpretation | Complete | `docs/complex-plane.md`, interactive site |
 | Foundation | Python verification | Complete | package, tests, `examples/minimal.py` |
 | Gate 1 | Power-series derivation | Complete | `docs/power-series.md`, tests |
-| Gate 2 | Differential-equation derivation | Pending | Planned for 0.2.0 |
-| Gate 3 | Matrix rotation | Foundation only | Helper and summary present; full derivation pending |
+| Gate 2 | Differential-equation derivation | In review | `docs/differential-equations.md`; release review pending |
+| Gate 3 | Matrix rotation | In review | `docs/matrix-rotation.md`, helper, and tests; laboratory/review pending |
 | Gate 4 | Waves and phasors | Pending | Planned for 0.3.0 |
 | Gate 5 | Fourier analysis | Pending | Planned for 0.4.0 |
 | Gate 6 | Quantum phase | Pending | Planned for 0.4.0 |
@@ -23,6 +23,7 @@ This ledger records demonstrated completion rather than aspiration.
 
 - **Complete** — implemented and covered by the stated evidence
 - **Foundation only** — enough for the current release, not the full mastery gate
+- **In review** — implemented on a development path but not yet released
 - **Pending** — not represented as complete
 - **Released** — technical foundation release published through protected GitHub gates
 

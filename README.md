@@ -74,6 +74,8 @@ Then open `http://localhost:8000`.
 | [The proof](docs/proof.md) | Derive the identity directly from Euler’s formula |
 | [The complex plane](docs/complex-plane.md) | Understand rotation, coordinates, magnitude, and phase |
 | [The power-series derivation](docs/power-series.md) | See why the exponential contains sine and cosine |
+| [Differential equations](docs/differential-equations.md) | Derive why `f'(θ)=if(θ)` produces unit-circle motion (`0.2.0` development) |
+| [Matrix rotation](docs/matrix-rotation.md) | Derive the matrix exponential for planar rotation (`0.2.0` development) |
 | [Numerical computing](docs/numerical-computing.md) | Explain Python’s tiny floating-point residual |
 | [Interpretation](docs/interpretation.md) | Explore meaning without confusing interpretation with proof |
 | [Mastery ledger](docs/mastery-ledger.md) | Track what is complete and what remains |
@@ -153,8 +155,10 @@ The `0.1.0` foundation release includes:
 - accessible interactive unit circle
 - claims register and source boundaries
 
-Advanced differential-equation, Fourier, phasor, and quantum modules remain on
-the [roadmap](ROADMAP.md). Their absence from `0.1.0` is intentional.
+Differential-equation and matrix derivations are now implemented on the
+`0.2.0` development path. The matrix laboratory and independent mathematical
+review remain release gates, so `0.2.0` is not yet complete. Fourier, phasor,
+and quantum modules remain on the [roadmap](ROADMAP.md).
 
 ### Known limitations
 
